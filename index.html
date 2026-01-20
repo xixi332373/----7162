@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monedas Virtuales en Argentina | Actualidad y Perspectivas</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 自定义配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        argentina: {
+                            blue: '#003893',
+                            lightblue: '#7FB2F0',
+                            white: '#FFFFFF',
+                            yellow: '#FCD116'
+                        },
+                        dark: '#1A1A2E',
+                        whatsapp: '#25D366' // Color oficial de WhatsApp
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .section-padding {
+                padding: clamp(3rem, 8vw, 6rem) 0;
+            }
+            .card-hover {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-gray-800">
+    <!-- Barra de Navegación -->
+    <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <i class="fa-solid fa-coins text-argentina-blue text-2xl"></i>
+                <span class="font-bold text-xl text-argentina-blue">CryptoArg</span>
+            </a>
+            
+            <!-- Navegación Desktop -->
+            <nav class="hidden md:flex items-center gap-6">
+                <a href="#inicio" class="font-medium hover:text-argentina-blue transition-colors">Inicio</a>
+                <a href="#contexto" class="font-medium hover:text-argentina-blue transition-colors">Contexto</a>
+                <a href="#estadisticas" class="font-medium hover:text-argentina-blue transition-colors">Estadísticas</a>
+                <a href="#noticias" class="font-medium hover:text-argentina-blue transition-colors">Noticias</a>
+                <a href="#faq" class="font-medium hover:text-argentina-blue transition-colors">FAQ</a>
+            </nav>
+            
+            <!-- Botón Menú Móvil -->
+            <button id="menuBtn" class="md:hidden text-gray-700 text-xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Menú Navegación Móvil -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-3 flex flex-col gap-4">
+                <a href="#inicio" class="font-medium py-2 hover:text-argentina-blue transition-colors">Inicio</a>
+                <a href="#contexto" class="font-medium py-2 hover:text-argentina-blue transition-colors">Contexto</a>
+                <a href="#estadisticas" class="font-medium py-2 hover:text-argentina-blue transition-colors">Estadísticas</a>
+                <a href="#noticias" class="font-medium py-2 hover:text-argentina-blue transition-colors">Noticias</a>
+                <a href="#faq" class="font-medium py-2 hover:text-argentina-blue transition-colors">FAQ</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección Hero (Inicio) -->
+    <section id="inicio" class="pt-28 pb-20 bg-gradient-to-br from-argentina-blue to-argentina-lightblue text-white">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
+            <div class="md:w-1/2 space-y-6">
+                <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-shadow">
+                    Monedas Virtuales en <span class="text-argentina-yellow">Argentina</span>
+                </h1>
+                <p class="text-lg md:text-xl opacity-90">
+                    Conoce el contexto, las tendencias y el impacto de las criptomonedas en la economía argentina, 
+                    desde la regulación hasta el uso cotidiano por parte de los argentinos.
+                </p>
+                <!-- Botón WhatsApp con Funcionalidad de Salto -->
+                <div class="flex flex-wrap gap-4">
+                    <!-- 👉 Reemplaza "541112345678" con tu número REAL (formato: código país + área + número, sin espacios/símbolos) -->
+                    <!-- 👉 Reemplaza el texto "Hola! Quiero más información sobre criptomonedas en Argentina" con el mensaje predeterminado que desees -->
+                    <a href="https://wa.me/541112345678?text=Hola!%20Quiero%20más%20información%20sobre%20criptomonedas%20en%20Argentina" 
+                       target="_blank" 
+                       class="bg-whatsapp text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-500 transition-colors shadow-lg text-lg">
+                        <i class="fa-brands fa-whatsapp mr-2"></i>Contáctanos por WhatsApp
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://picsum.photos/id/180/600/400" alt="Criptomonedas Argentina" class="rounded-xl shadow-2xl w-full max-w-md">
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contexto -->
+    <section id="contexto" class="section-padding bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-argentina-blue mb-4">Contexto Económico y Uso de Criptomonedas</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Argentina se ha convertido en uno de los mercados más activos de Latinoamérica en el uso de criptomonedas, motivado por factores económicos únicos.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Tarjeta 1 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-argentina-blue/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-inflation text-argentina-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Inflación y Restricciones</h3>
+                    <p class="text-gray-600">La alta inflación y las restricciones al acceso a divisas han llevado a muchos argentinos a buscar alternativas como Bitcoin y stablecoins.</p>
+                </div>
+                
+                <!-- Tarjeta 2 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-argentina-blue/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-scale-balanced text-argentina-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Regulación</h3>
+                    <p class="text-gray-600">El gobierno argentino ha implementado regulaciones variadas, desde restricciones hasta propuestas de legalización de operaciones.</p>
+                </div>
+                
+                <!-- Tarjeta 3 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-argentina-blue/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-users text-argentina-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Adopción Masiva</h3>
+                    <p class="text-gray-600">Plataformas de pago y comercios locales han integrado criptomonedas, convirtiéndolas en una alternativa de pago viable en muchos sectores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Estadísticas -->
+    <section id="estadisticas" class="section-padding bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-argentina-blue mb-4">Estadísticas Clave</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Datos relevantes sobre el uso de criptomonedas en Argentina</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-md">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Usuarios de Criptomonedas</h3>
+                            <p class="text-gray-600 mb-4">Porcentaje de la población argentina que ha utilizado criptomonedas</p>
+                            <div class="text-4xl font-bold text-argentina-blue">~20%</div>
+                            <p class="text-gray-500 text-sm mt-2">Fuente: Encuestas sectoriales 2025</p>
+                        </div>
+                        <div class="w-full md:w-1/2 h-64">
+                            <canvas id="usuariosChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-md">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Volumen de Transacciones</h3>
+                            <p class="text-gray-600 mb-4">Millones de USD en transacciones mensuales</p>
+                            <div class="text-4xl font-bold text-argentina-blue">$1.2B+</div>
+                            <p class="text-gray-500 text-sm mt-2">Fuente: Reportes de exchanges locales</p>
+                        </div>
+                        <div class="w-full md:w-1/2 h-64">
+                            <canvas id="volumenChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Noticias -->
+    <section id="noticias" class="section-padding bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-argentina-blue mb-4">Últimas Noticias</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Actualidad sobre criptomonedas en Argentina</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Tarjeta Noticia 1 -->
+                <article class="rounded-xl overflow-hidden shadow-md card-hover">
+                    <img src="https://picsum.photos/id/237/600/400" alt="Noticia 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-medium text-argentina-blue bg-argentina-blue/10 px-3 py-1 rounded-full">Regulación</span>
+                        <h3 class="text-xl font-semibold mt-3 mb-2">Nueva Ley de Criptomonedas en Argentina</h3>
+                        <p class="text-gray-600 mb-4">El Congreso argentino analiza una nueva normativa que regula el uso y comercio de criptomonedas en el país.</p>
+                        <a href="#" class="text-argentina-blue font-medium hover:underline">Leer más <i class="fa-solid fa-angle-right ml-1"></i></a>
+                    </div>
+                </article>
+                
+                <!-- Tarjeta Noticia 2 -->
+                <article class="rounded-xl overflow-hidden shadow-md card-hover">
+                    <img src="https://picsum.photos/id/433/600/400" alt="Noticia 2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-medium text-argentina-blue bg-argentina-blue/10 px-3 py-1 rounded-full">Adopción</span>
+                        <h3 class="text-xl font-semibold mt-3 mb-2">Más Comercios Aceptan Bitcoin en CABA</h3>
+                        <p class="text-gray-600 mb-4">El 15% de los comercios de Buenos Aires ahora aceptan pagos en criptomonedas, según un estudio reciente.</p>
+                        <a href="#" class="text-argentina-blue font-medium hover:underline">Leer más <i class="fa-solid fa-angle-right ml-1"></i></a>
+                    </div>
+                </article>
+                
+                <!-- Tarjeta Noticia 3 -->
+                <article class="rounded-xl overflow-hidden shadow-md card-hover">
+                    <img src="https://picsum.photos/id/104/600/400" alt="Noticia 3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-medium text-argentina-blue bg-argentina-blue/10 px-3 py-1 rounded-full">Economía</span>
+                        <h3 class="text-xl font-semibold mt-3 mb-2">Stablecoins como Alternativa al Dólar</h3>
+                        <p class="text-gray-600 mb-4">Los stablecoins USDC y USDT se han convertido en la opción preferida por miles de argentinos para proteger su capital.</p>
+                        <a href="#" class="text-argentina-blue font-medium hover:underline">Leer más <i class="fa-solid fa-angle-right ml-1"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección FAQ -->
+    <section id="faq" class="section-padding bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-argentina-blue mb-4">Preguntas Frecuentes</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Respuestas a las dudas más comunes sobre criptomonedas en Argentina</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-4">
+                <!-- Item FAQ 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="faq-btn w-full flex justify-between items-center p-6 text-left font-medium">
+                        <span>¿Es legal operar con criptomonedas en Argentina?</span>
+                        <i class="fa-solid fa-chevron-down text-argentina-blue transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-600">Sí, el uso y comercio de criptomonedas es legal en Argentina, aunque existen regulaciones sobre el reporte de impuestos y transacciones mayores a ciertos montos. Es recomendable consultar con un asesor fiscal especializado.</p>
+                    </div>
+                </div>
+                
+                <!-- Item FAQ 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="faq-btn w-full flex justify-between items-center p-6 text-left font-medium">
+                        <span>¿Qué impuestos aplican a las ganancias con criptomonedas?</span>
+                        <i class="fa-solid fa-chevron-down text-argentina-blue transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-600">Las ganancias obtenidas por la venta de criptomonedas están sujetas al Impuesto a las Ganancias y al Impuesto PAIS, dependiendo del monto y la frecuencia de las operaciones. Desde 2024, se requiere declarar todas las transacciones superiores a $10.000 USD anuales.</p>
+                    </div>
+                </div>
+                
+                <!-- Item FAQ 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="faq-btn w-full flex justify-between items-center p-6 text-left font-medium">
+                        <span>¿Dónde puedo comprar criptomonedas en Argentina?</span>
+                        <i class="fa-solid fa-chevron-down text-argentina-blue transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-600">Existen varias plataformas locales y internacionales operativas en Argentina, incluyendo Buenbit, Lemon Cash, Binance, Bybit, entre otras. Es importante elegir plataformas reguladas y con buena reputación en el mercado.</p>
+                    </div>
+                </div>
+                
+                <!-- Item FAQ 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="faq-btn w-full flex justify-between items-center p-6 text-left font-medium">
+                        <span>¿Puedo usar criptomonedas para pagar servicios públicos?</span>
+                        <i class="fa-solid fa-chevron-down text-argentina-blue transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-600">Actualmente, las empresas de servicios públicos no aceptan directamente pagos en criptomonedas, pero existen intermediarios que permiten convertir criptomonedas a pesos argentinos para realizar estos pagos de forma indirecta.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de Página -->
+    <footer class="bg-argentina-blue text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="#" class="flex items-center gap-2 mb-4">
+                        <i class="fa-solid fa-coins text-argentina-yellow text-2xl"></i>
+                        <span class="font-bold text-xl">CryptoArg</span>
+                    </a>
+                    <p class="text-gray-300 mb-4">Información actualizada sobre el uso de criptomonedas en Argentina.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-white hover:text-argentina-yellow transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="text-white hover:text-argentina-yellow transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="text-white hover:text-argentina-yellow transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-argentina-yellow transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                        <!-- Icono WhatsApp en Pie de Página -->
+                        <a href="https://wa.me/541112345678" target="_blank" class="text-white hover:text-whatsapp transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Enlaces Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-gray-300 hover:text-white transition-colors">Inicio</a></li>
+                        <li><a href="#contexto" class="text-gray-300 hover:text-white transition-colors">Contexto</a></li>
+                        <li><a href="#estadisticas" class="text-gray-300 hover:text-white transition-colors">Estadísticas</a></li>
+                        <li><a href="#noticias" class="text-gray-300 hover:text-white transition-colors">Noticias</a></li>
+                        <li><a href="#faq" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Recursos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Guía para Principiantes</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Regulaciones Fiscales</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Comparativa de Exchanges</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Glosario de Términos</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Contacto</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-envelope"></i> <a href="mailto:info@cryptoarg.com" class="text-gray-300 hover:text-white transition-colors">info@cryptoarg.com</a></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone"></i> <span class="text-gray-300">+54 11 1234-5678</span></li>
+                        <!-- Contacto WhatsApp en Pie de Página -->
+                        <li class="flex items-center gap-2"><i class="fa-brands fa-whatsapp text-whatsapp"></i> <a href="https://wa.me/541112345678" target="_blank" class="text-gray-300 hover:text-white transition-colors">+54 11 1234-5678 (WhatsApp)</a></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> <span class="text-gray-300">Buenos Aires, Argentina</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 CryptoArg. Todos los derechos reservados. Información solo con fines educativos.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Toggle Menú Móvil
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+        
+        // Interacción FAQ
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                
+                // Toggle Mostrar/Ocultar
+                content.classList.toggle('hidden');
+                
+                // Rotar Icono
+                icon.classList.toggle('rotate-180');
+                
+                // Cerrar Otros Items FAQ
+                faqBtns.forEach(otherBtn => {
+                    if (otherBtn !== btn) {
+                        otherBtn.nextElementSibling.classList.add('hidden');
+                        otherBtn.querySelector('i').classList.remove('rotate-180');
+                    }
+                });
+            });
+        });
+        
+        // Scroll Suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Cerrar Menú Móvil si está abierto
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        const icon = menuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+        
+        // Cambio de Estilo Navbar al Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+        
+        // Inicialización de Gráficos
+        window.addEventListener('load', () => {
+            // Gráfico Usuarios
+            const usuariosCtx = document.getElementById('usuariosChart').getContext('2d');
+            new Chart(usuariosCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Usuarios de Criptomonedas', 'No Usuarios'],
+                    datasets: [{
+                        data: [20, 80],
+                        backgroundColor: [
+                            '#003893',
+                            '#e5e7eb'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico Volumen
+            const volumenCtx = document.getElementById('volumenChart').getContext('2d');
+            new Chart(volumenCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Volumen (millones USD)',
+                        data: [800, 950, 880, 1050, 1120, 1200],
+                        borderColor: '#003893',
+                        backgroundColor: 'rgba(0, 56, 147, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
