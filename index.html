@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monedas Virtuales en Argentina | Actualidad y Perspectivas</title>
-    <!-- Meta Pixel Code - 已添加Facebook像素代码 -->
+    <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -41,7 +41,7 @@
                             yellow: '#FCD116'
                         },
                         dark: '#1A1A2E',
-                        whatsapp: '#25D366' // Color oficial de WhatsApp
+                        whatsapp: '#25D366'
                     },
                     fontFamily: {
                         inter: ['Inter', 'sans-serif'],
@@ -78,53 +78,53 @@
         }
     </style>
     
-    <!-- 地域检测脚本 (使用ipapi.co免费API) -->
+    <!-- 地域检测脚本 -->
     <script>
-        // 标记是否为阿根廷用户
         let isArgentinaUser = false;
         
-        // 检测用户地域
+        // 增强版地域检测，增加备用API
         async function checkUserLocation() {
-            try {
-                // 使用ipapi.co获取IP对应的国家信息 (免费API，适合小型项目)
-                const response = await fetch('https://ipapi.co/json/');
-                const data = await response.json();
-                
-                // 验证国家代码 (阿根廷的ISO代码是 AR)
-                if (data.country_code === 'AR') {
-                    isArgentinaUser = true;
+            // 定义API列表
+            const apis = [
+                'https://ipapi.co/json/',
+                'https://ipinfo.io/json'
+            ];
+            
+            for (const api of apis) {
+                try {
+                    const response = await fetch(api);
+                    if (!response.ok) continue;
+                    
+                    const data = await response.json();
+                    const countryCode = data.country_code || data.country;
+                    
+                    if (countryCode === 'AR') {
+                        isArgentinaUser = true;
+                        break;
+                    }
+                } catch (error) {
+                    console.log(`Error with API ${api}:`, error);
+                    continue;
                 }
-                
-                // 根据检测结果显示/隐藏内容
-                showContentBasedOnLocation();
-            } catch (error) {
-                // API调用失败时的降级处理：默认允许访问（可根据需求改为拒绝）
-                console.log('Error detecting location:', error);
-                isArgentinaUser = true; // 失败时允许访问，避免误封
-                showContentBasedOnLocation();
             }
+            
+            showContentBasedOnLocation();
         }
         
-        // 根据地域显示内容
         function showContentBasedOnLocation() {
             const mainContent = document.getElementById('main-content');
             const restrictedContent = document.getElementById('restricted-content');
             
             if (isArgentinaUser) {
-                // 阿根廷用户：显示主内容
                 mainContent.style.display = 'block';
                 restrictedContent.style.display = 'none';
             } else {
-                // 非阿根廷用户：显示受限提示
                 mainContent.style.display = 'none';
                 restrictedContent.style.display = 'flex';
-                
-                // 触发Facebook像素的访问受限事件（可选）
                 fbq('track', 'RestrictedAccess');
             }
         }
         
-        // 页面加载时立即检测地域
         window.addEventListener('DOMContentLoaded', checkUserLocation);
     </script>
 </head>
@@ -148,7 +148,36 @@
 
 <!-- 阿根廷用户看到的主内容 -->
 <div id="main-content" class="hidden">
-<script>insert_event_code_here;</script>
+    <!-- Facebook像素事件代码 -->
+    <script>
+        // 追踪页面互动事件
+        document.addEventListener('DOMContentLoaded', function() {
+            // 追踪WhatsApp点击事件
+            const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+            whatsappLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    fbq('track', 'ClickToWhatsApp');
+                });
+            });
+
+            // 追踪联系按钮点击事件
+            const contactButton = document.getElementById('contactButton');
+            if (contactButton) {
+                contactButton.addEventListener('click', function() {
+                    // Facebook像素事件追踪 - 替换为你的实际事件代码
+                    fbq('track', 'ContactButtonClick');
+                    fbq('track', 'Lead'); // 同时触发标准的Lead事件
+                    
+                    // 可以在这里添加更多逻辑，比如打开联系表单/弹窗
+                    alert('¡Gracias por contactarnos! Te responderemos pronto por WhatsApp.');
+                    
+                    // 可选：跳转到WhatsApp联系页面
+                    window.open('https://wa.me/54911987654321?text=Hola!%20Quiero%20más%20información%20sobre%20criptomonedas%20en%20Argentina', '_blank');
+                }, false);
+            }
+        });
+    </script>
+    
     <!-- Barra de Navegación -->
     <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -164,6 +193,10 @@
                 <a href="#estadisticas" class="font-medium hover:text-argentina-blue transition-colors">Estadísticas</a>
                 <a href="#noticias" class="font-medium hover:text-argentina-blue transition-colors">Noticias</a>
                 <a href="#faq" class="font-medium hover:text-argentina-blue transition-colors">FAQ</a>
+                <!-- 添加的联系按钮（桌面版） -->
+                <button id="contactButton" class="bg-argentina-blue text-white px-5 py-2 rounded-lg font-medium hover:bg-argentina-blue/90 transition-colors shadow-sm">
+                    <i class="fa-solid fa-envelope mr-2"></i>联系
+                </button>
             </nav>
             
             <!-- Botón Menú Móvil -->
@@ -180,6 +213,10 @@
                 <a href="#estadisticas" class="font-medium py-2 hover:text-argentina-blue transition-colors">Estadísticas</a>
                 <a href="#noticias" class="font-medium py-2 hover:text-argentina-blue transition-colors">Noticias</a>
                 <a href="#faq" class="font-medium py-2 hover:text-argentina-blue transition-colors">FAQ</a>
+                <!-- 添加的联系按钮（移动端） -->
+                <button id="contactButtonMobile" class="bg-argentina-blue text-white px-5 py-2 rounded-lg font-medium hover:bg-argentina-blue/90 transition-colors shadow-sm w-full">
+                    <i class="fa-solid fa-envelope mr-2"></i>联系
+                </button>
             </div>
         </div>
     </header>
@@ -195,11 +232,9 @@
                     Conoce el contexto, las tendencias y el impacto de las criptomonedas en la economía argentina, 
                     desde la regulación hasta el uso cotidiano por parte de los argentinos.
                 </p>
-                <!-- Botón WhatsApp con Funcionalidad de Salto -->
+                <!-- Botón WhatsApp (替换为真实号码) -->
                 <div class="flex flex-wrap gap-4">
-                    <!-- 👉 Reemplaza "541112345678" con tu número REAL (formato: código país + área + número, sin espacios/símbolos) -->
-                    <!-- 👉 Reemplaza el texto "Hola! Quiero más información sobre criptomonedas en Argentina" con el mensaje predeterminado que desees -->
-                    <a href="https://wa.me/541112345678?text=Hola!%20Quiero%20más%20información%20sobre%20criptomonedas%20en%20Argentina" 
+                    <a href="https://wa.me/54911987654321?text=Hola!%20Quiero%20más%20información%20sobre%20criptomonedas%20en%20Argentina" 
                        target="_blank" 
                        class="bg-whatsapp text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-500 transition-colors shadow-lg text-lg">
                         <i class="fa-brands fa-whatsapp mr-2"></i>Contáctanos por WhatsApp
@@ -408,7 +443,7 @@
                         <a href="#" class="text-white hover:text-argentina-yellow transition-colors"><i class="fa-brands fa-instagram"></i></a>
                         <a href="#" class="text-white hover:text-argentina-yellow transition-colors"><i class="fa-brands fa-linkedin"></i></a>
                         <!-- Icono WhatsApp en Pie de Página -->
-                        <a href="https://wa.me/541112345678" target="_blank" class="text-white hover:text-whatsapp transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/54911987654321" target="_blank" class="text-white hover:text-whatsapp transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
                 
@@ -437,9 +472,9 @@
                     <h4 class="font-semibold text-lg mb-4">Contacto</h4>
                     <ul class="space-y-2">
                         <li class="flex items-center gap-2"><i class="fa-solid fa-envelope"></i> <a href="mailto:info@cryptoarg.com" class="text-gray-300 hover:text-white transition-colors">info@cryptoarg.com</a></li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone"></i> <span class="text-gray-300">+54 11 1234-5678</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone"></i> <span class="text-gray-300">+54 11 9876-5432</span></li>
                         <!-- Contacto WhatsApp en Pie de Página -->
-                        <li class="flex items-center gap-2"><i class="fa-brands fa-whatsapp text-whatsapp"></i> <a href="https://wa.me/541112345678" target="_blank" class="text-gray-300 hover:text-white transition-colors">+54 11 1234-5678 (WhatsApp)</a></li>
+                        <li class="flex items-center gap-2"><i class="fa-brands fa-whatsapp text-whatsapp"></i> <a href="https://wa.me/54911987654321" target="_blank" class="text-gray-300 hover:text-white transition-colors">+54 11 9876-5432 (WhatsApp)</a></li>
                         <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> <span class="text-gray-300">Buenos Aires, Argentina</span></li>
                     </ul>
                 </div>
@@ -467,6 +502,21 @@
             } else {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
+            }
+        });
+        
+        // 移动端联系按钮事件绑定（和桌面版保持一致）
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactButtonMobile = document.getElementById('contactButtonMobile');
+            if (contactButtonMobile) {
+                contactButtonMobile.addEventListener('click', function() {
+                    // 触发相同的Facebook像素事件
+                    fbq('track', 'ContactButtonClick');
+                    fbq('track', 'Lead');
+                    
+                    alert('¡Gracias por contactarnos! Te responderemos pronto por WhatsApp.');
+                    window.open('https://wa.me/54911987654321?text=Hola!%20Quiero%20más%20información%20sobre%20criptomonedas%20en%20Argentina', '_blank');
+                }, false);
             }
         });
         
@@ -531,8 +581,8 @@
             }
         });
         
-        // Inicialización de Gráficos
-        window.addEventListener('load', () => {
+        // 延迟加载图表，提升性能
+        function initCharts() {
             // Gráfico Usuarios
             const usuariosCtx = document.getElementById('usuariosChart').getContext('2d');
             new Chart(usuariosCtx, {
@@ -589,6 +639,22 @@
                     }
                 }
             });
+        }
+        
+        // 使用Intersection Observer仅在图表进入视口时加载
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('estadisticas')) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            initCharts();
+                            observer.disconnect();
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                observer.observe(document.getElementById('estadisticas'));
+            }
         });
     </script>
 </div>
